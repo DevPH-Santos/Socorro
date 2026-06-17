@@ -2,12 +2,14 @@ package com.example.socorro
 
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
@@ -27,6 +29,7 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
         //Inicializando o serviço de SharedPreferences
         sharedPreferences = getSharedPreferences("socorro", MODE_PRIVATE)
 
@@ -42,9 +45,13 @@ class MainActivity : AppCompatActivity() {
             openConfigActivity()
         }//Botão config
 
-        initSetup()
 
     }//fim do onCreate
+
+    override fun onStart() {
+        super.onStart()
+        initSetup()
+    }
 
     private fun initSetup(){
         if (sharedPreferences.contains("contactPhone")){
@@ -53,6 +60,7 @@ class MainActivity : AppCompatActivity() {
             val builder = AlertDialog.Builder(this)
             builder.setTitle(getString(R.string.titleAlertDialog))
             builder.setMessage(getString(R.string.messageAlertDialog))
+            builder.setCancelable(false)
             builder.setPositiveButton("Configurar Agora"){ dialog, which ->
                 openConfigActivity()
             }
@@ -68,6 +76,17 @@ class MainActivity : AppCompatActivity() {
     private fun openConfigActivity(){
         val intent = Intent(this, ConfigActivity::class.java)
         startActivity(intent)
+    }
+
+    private fun checkAndRequestPermission(permission: String):Boolean{
+        if(ActivityCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
+            //naooo tenho permissão
+            ActivityCompat.requestPermissions(this, arrayOf(permission), 0)
+            return false
+        }
+
+        return true
+
     }
 
 }//fim da class
