@@ -11,6 +11,8 @@
     <string name="contactPhone">(19) 91111-1234</string>
     <string name="titleAlertDialog">Bem vindo(a) ao App Socorro</string>
     <string name="messageAlertDialog">Antes de utilizar o app, será necessário configurar</string>
+    <string name="errorMessageSMS">Falha ao enviar SMS.</string>
+    <string name="msgSMSSocorro">Socorro meu ajude https://www.google.com/maps/?q=${latitude}, ${longitude}</string>
 
     <!-- ConfigActivity -->
     <string name="config">Configuração</string>
