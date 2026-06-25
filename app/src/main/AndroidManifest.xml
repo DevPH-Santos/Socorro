@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Permissões -->
     <uses-feature
         android:name="android.hardware.telephony"
         android:required="false" />
@@ -10,7 +9,6 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.SEND_SMS"/>
-
 
     <application
         android:allowBackup="true"

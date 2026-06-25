@@ -9,16 +9,16 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import java.util.prefs.Preferences
 
-class ConfigActivity : AppCompatActivity() {
+class
+ConfigActivity : AppCompatActivity() {
 
-    //Declarando os atributos da classe
+    //Declarando as variaveis
     private lateinit var editTextContactName: EditText
     private lateinit var editTextContactPhone: EditText
     private lateinit var editTextMsg: EditText
 
-    //Declarando as SharedPreferences
+    //Declarado os servições de preferencias compartilhadas
     private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,40 +31,40 @@ class ConfigActivity : AppCompatActivity() {
             insets
         }
 
-        //Inicializando o serviço de SharedPreferences
+        //Iniciandoo serviço sharedPreferences
         sharedPreferences = getSharedPreferences("socorro", MODE_PRIVATE)
 
-        //Ligação entre o Kotlin e o XML
+        //Ligação entre o Kotlin eo XML
         editTextContactName = findViewById(R.id.editTextContactName)
         editTextContactPhone = findViewById(R.id.editTextContactPhone)
         editTextMsg = findViewById(R.id.editTextMsg)
 
-        //carregas as preferências cadastradas
+        //Carrega as preferencias
         loadPreferences()
 
-        //Botão salvar
-        findViewById<Button>(R.id.buttonSave).setOnClickListener{
+        //Botão Salvar
+        findViewById<Button>(R.id.buttonSave).setOnClickListener {
             handlePreferences()
         }
-
-    }//fim do onCreate
+    }
 
     private fun savePreferences(){
         sharedPreferences.edit()
-            .putString("contactName",editTextContactName.text.toString())
-            .putString("contactPhone",editTextContactPhone.text.toString())
-            .putString("msg",editTextMsg.text.toString())
+            .putString("contactName", editTextContactName.text.toString())
+            .putString("contactPhone", editTextContactPhone.text.toString())
+            .putString("msg", editTextMsg.text.toString())
             .apply()
-    }//fim do savePreferences
+    }
 
     private fun loadPreferences(){
         editTextContactName.setText(sharedPreferences.getString("contactName",null))
         editTextContactPhone.setText(sharedPreferences.getString("contactPhone",null))
         editTextMsg.setText(sharedPreferences.getString("msg",null))
-    }//fim do loadPreferences
+    }
 
     private fun handlePreferences(){
         savePreferences()
-        Toast.makeText(this, "Salvar com sucesso!", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this,"Salvo com sucesso!", Toast.LENGTH_SHORT).show()
     }
-}//fim da classe
+
+}

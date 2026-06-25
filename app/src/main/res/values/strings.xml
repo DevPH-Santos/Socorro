@@ -1,29 +1,21 @@
 <resources>
     <string name="app_name">socorro</string>
 
-    <!-- MainActivity -->
-    <string name="hit_main">
-        Após tocar no botão acima, uma mensagem de texto será
+
+    <string name="hint_main">
+        Após tocar no botão acima, uma mensagem texto será
         enviada para um contato de sua confiança
     </string>
     <string name="contact">Contato</string>
-    <string name="contactName">Ana Paula</string>
-    <string name="contactPhone">(19) 91111-1234</string>
-    <string name="titleAlertDialog">Bem vindo(a) ao App Socorro</string>
-    <string name="messageAlertDialog">Antes de utilizar o app, será necessário configurar</string>
-    <string name="errorMessageSMS">Falha ao enviar SMS.</string>
-    <string name="msgSMSSocorro">Socorro meu ajude https://www.google.com/maps/?q=${latitude}, ${longitude}</string>
-
-    <!-- ConfigActivity -->
-    <string name="config">Configuração</string>
+    <!--tela 2-->
+    <string name="config">Configurações</string>
     <string name="hint_config">
         Cadastre uma pessoa que será avisada rapidamente em
         caso de emergência. Ela receberá a sua mensagem e
         localização por SMS quando o botão de pânico for acionado.
     </string>
-
     <string name="hint_contact_name">Nome do contato</string>
     <string name="hint_contact_phone">Celular do contato</string>
-    <string name="msg">Mensagem</string>
-    <string name="save">Salvar</string>
+    <string name="msg">Mensagens</string>
+    <string name="save">Salva</string>
 </resources>

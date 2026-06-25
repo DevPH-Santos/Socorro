@@ -1,12 +1,15 @@
 package com.example.socorro
 
-import android.annotation.SuppressLint
+import android.Manifest
+import android.app.Activity
+import android.content.ContentProviderClient
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.telephony.SmsManager
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -19,16 +22,14 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 
 class MainActivity : AppCompatActivity() {
-    //Declarando os atributos da classe
-    private lateinit var textViewContacInfo: TextView
+    //Declarando as variaveis
+    private lateinit var textViewConfigInfo: TextView
 
-    //Declarando as sharedPreferences
+    //Declarado os servições de preferencias compartilhadas
     private lateinit var sharedPreferences: SharedPreferences
 
-    //declarando o serviço de localização
-    private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
 
-    //declarando o serviço de envio de SMS
     private lateinit var smsManager: SmsManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,33 +42,28 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        //Inicializando o serviço de SharedPreferences
+        //Iniciandoo serviço sharedPreferences
         sharedPreferences = getSharedPreferences("socorro", MODE_PRIVATE)
 
-        //inicializando o serviço de localização
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
-        //ligação entre o Kotlin e o XML
-        textViewContacInfo = findViewById(R.id.textViewContactInfo)
+        //Ligação entre o Kotlin eo XML
+        textViewConfigInfo = findViewById(R.id.textViewConfigInfo)
 
-        //=============== Botões ===============\\
-        findViewById<Button>(R.id.buttonSOS).setOnClickListener{
-
-            if(checkAndRequestPermission(android.Manifest.permission.ACCESS_FINE_LOCATION)){
-                //localizar
-                fusedLocationProviderClient.lastLocation.addOnSuccessListener { location ->
-                    Toast.makeText(this, "LAT: ${location.latitude} | LONG: ${location.longitude}", Toast.LENGTH_SHORT).show()
-                }
+        //Botão
+        findViewById<Button>(R.id.buttonSOS).setOnClickListener {
+            if(checkAndRequestPermission(Manifest.permission.ACCESS_FINE_LOCATION)){
+                fusedLocationClient.lastLocation
+                    .addOnSuccessListener { location ->
+                       // Toast.makeText(this, "LAT: ${location.latitude} | LONG: ${location.longitude}", Toast.LENGTH_SHORT).show()
+                        sendSMS(location.latitude.toString(), location.longitude.toString())
+                    }
             }
-
-        }//Botão SOS
-
-        findViewById<Button>(R.id.imageButtonConfig).setOnClickListener {
+        }
+        findViewById<ImageButton>(R.id.imageButtonConfig).setOnClickListener {
             openConfigActivity()
-        }//Botão config
-
-
-    }//fim do onCreate
+        }
+    }
 
     override fun onStart() {
         super.onStart()
@@ -77,22 +73,21 @@ class MainActivity : AppCompatActivity() {
     private fun initSetup(){
         if (sharedPreferences.contains("contactPhone")){
             displayContactInfo()
-        }else{
+        } else{
             val builder = AlertDialog.Builder(this)
-            builder.setTitle(getString(R.string.titleAlertDialog))
-            builder.setMessage(getString(R.string.messageAlertDialog))
+            builder.setTitle("Bem vindo ao App Socorro!")
+            builder.setMessage("Antes de atualizar o app, será necessario configurar")
             builder.setCancelable(false)
-            builder.setPositiveButton("Configurar Agora"){ dialog, which ->
+            builder.setPositiveButton("Configurar agora"){ dialog, which ->
                 openConfigActivity()
             }
         }
     }
 
-    @SuppressLint("SetTextI18n")
     private fun displayContactInfo(){
-        val contactName = sharedPreferences.getString("contactName", null)
-        val contactPhone = sharedPreferences.getString("contactPhone", null)
-        textViewContacInfo.setText("$contactName | $contactPhone")
+        val contactName = sharedPreferences.getString("contactName",null)
+        val contactPhone = sharedPreferences.getString("contactPhone",null)
+        textViewConfigInfo.setText("$contactName | $contactPhone")
     }
 
     private fun openConfigActivity(){
@@ -100,28 +95,24 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun checkAndRequestPermission(permission: String):Boolean{
-        if(ActivityCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
-            //naooo tenho permissão
+    private fun checkAndRequestPermission(permission:String): Boolean{
+        if (ActivityCompat.checkSelfPermission(this, permission)!= PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(this, arrayOf(permission), 0)
             return false
         }
-
         return true
-
     }
 
-    private fun sendSMS(latitude: String, longitude: String) {
-        val msg = getString(R.string.msgSMSSocorro)
-
-        try {
+    private fun sendSMS(latitude: String, longitude: String){
+        val msg = "Socorro me ajuda http://www.google.com/maps/?q=${latitude}.${longitude}"
+        try{
             val smsManager: SmsManager = this.getSystemService(SmsManager::class.java)
-
-            //envia o sms
+            //Enviar
             smsManager.sendTextMessage("5554", null, msg, null, null)
-        } catch (e: Exception) {
-            Toast.makeText(this, getString(R.string.errorMessageSMS), Toast.LENGTH_SHORT).show()
+        } catch (e: Exception){
+            Toast.makeText(this,"Folha ao enviae o SMS.", Toast.LENGTH_SHORT).show()
         }
+
     }
 
-}//fim da class
+}

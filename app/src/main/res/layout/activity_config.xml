@@ -5,10 +5,11 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".ConfigActivity">
 
     <LinearLayout
-        android:id="@+id/linearLayoutHeader"
+        android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
@@ -19,25 +20,23 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/textViewConfigTitle"
-            android:layout_width="match_parent"
+            android:id="@+id/textViewtConfigTitle"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/config"
             android:textColor="@color/white"
-            android:textSize="34sp"
-            android:textStyle="bold" />
+            android:textSize="34sp" />
 
         <TextView
             android:id="@+id/textViewHintConfig"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/hint_config"
-            android:textColor="@color/white"
-            android:textSize="14sp" />
+            android:textColor="@color/white" />
     </LinearLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutContactName"
+        android:id="@+id/textInputLayoutContaxtName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -45,7 +44,7 @@
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayoutHeader">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextContactName"
@@ -57,13 +56,13 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutContactPhone"
         android:layout_width="0dp"
-        android:layout_height="61dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutContactName">
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutContaxtName">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextContactPhone"
@@ -73,7 +72,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/TextInputMsg"
+        android:id="@+id/textInputLayoutMsg"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
@@ -103,4 +102,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

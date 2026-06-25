@@ -5,60 +5,71 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="24dp"
     tools:context=".MainActivity">
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonSOS"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
         android:background="@drawable/background_circle"
         android:text="SOS"
-        android:textColor="#FFFDFD"
+        android:textColor="@color/white"
         android:textSize="96sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textViewHintMain"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewContactInfo" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textViewHintMain"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/hit_main"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:text="@string/hint_main"
         android:textAlignment="center"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSOS" />
 
     <TextView
-        android:id="@+id/textViewContact"
+        android:id="@+id/textViewConfig"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
         android:text="@string/contact"
+        android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/textViewConfigInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:text="Tais (19)996370084"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewConfig" />
+
     <ImageButton
         android:id="@+id/imageButtonConfig"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
         android:background="@null"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@drawable/settings" />
-
-    <TextView
-        android:id="@+id/textViewContactInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ana Paula | (19) 98861-1028"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewContact" />
+        tools:srcCompat="@drawable/setting" />
 </androidx.constraintlayout.widget.ConstraintLayout>
