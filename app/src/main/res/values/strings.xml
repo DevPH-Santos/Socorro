@@ -7,7 +7,15 @@
         enviada para um contato de sua confiança
     </string>
     <string name="contact">Contato</string>
-    <!--tela 2-->
+    <string name="msgSOS">Socorro me ajuda http://www.google.com/maps/?q=${latitude}.${longitude}</string>
+    <string name="failureSendSMS">Falha ao enviar o SMS.</string>
+
+    <string name="greetingMsg">Bem vindo ao App Socorro!</string>
+    <string name="waringUsableMsg">Antes de atualizar o app, será necessario configurar.</string>
+    <string name="buttonConfigNow">Configurar agora</string>
+
+
+    <!--ConfigActivity-->
     <string name="config">Configurações</string>
     <string name="hint_config">
         Cadastre uma pessoa que será avisada rapidamente em
@@ -17,5 +25,7 @@
     <string name="hint_contact_name">Nome do contato</string>
     <string name="hint_contact_phone">Celular do contato</string>
     <string name="msg">Mensagens</string>
-    <string name="save">Salva</string>
+    <string name="save">Salvar</string>
+    <string name="success">Salvo com sucesso!</string>
+
 </resources>

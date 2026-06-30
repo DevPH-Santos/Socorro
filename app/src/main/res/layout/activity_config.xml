@@ -19,6 +19,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <ImageButton
+            android:id="@+id/backtoMain"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/arrow" />
+
         <TextView
             android:id="@+id/textViewtConfigTitle"
             android:layout_width="wrap_content"
@@ -33,6 +40,7 @@
             android:layout_height="wrap_content"
             android:text="@string/hint_config"
             android:textColor="@color/white" />
+
     </LinearLayout>
 
     <com.google.android.material.textfield.TextInputLayout
